@@ -41,8 +41,8 @@ namespace Chipoito.Disassembler
                 Console.WriteLine($"AVISO: byte isolado no fim da ROM em 0x{pc:X4}: {lastByte:X2}");
                 output += $"DESCONHECIDO 0x{lastByte:X2}" + "\n";
             }
-
-            File.WriteAllText("out.txt", output);
+            var nome = Path.GetFileNameWithoutExtension(romPath);
+            File.WriteAllText(nome+".asm", output);
         }
 
         private string DecodeOpcode(ushort opcode)
