@@ -55,7 +55,7 @@ namespace Chipoito
 
         public bool IsKeyPressed(byte key)
         {
-            //Console.WriteLine($"Verificar tecla {key:X}: {keys[key]}");
+            Console.WriteLine($"Verificar tecla {key:X}: {keys[key]}");
             return keys[key];
         }
 
@@ -78,6 +78,5 @@ namespace Chipoito
         {
             this.cpu = cpu;
         }
-
     }
 }

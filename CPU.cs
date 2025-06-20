@@ -1,5 +1,6 @@
 ﻿
 using SFML.Window;
+using static SFML.Window.Keyboard;
 
 namespace Chipoito
 {
@@ -87,13 +88,12 @@ namespace Chipoito
         private void DecodeAndExecute(ushort opcode)
         {
             // Decodificar e executar instruções
-
             ushort nnn = (ushort)(opcode & 0x0FFF);
             byte nn = (byte)(opcode & 0x00FF);
             byte n = (byte)(opcode & 0x000F);
             byte x = (byte)((opcode & 0x0F00) >> 8);
             byte y = (byte)((opcode & 0x00F0) >> 4);
-
+            Console.WriteLine("Valor de x :"+ x);
             var o = (byte)(opcode & 0xF000);
 
             switch (opcode & 0xF000)
@@ -102,13 +102,13 @@ namespace Chipoito
                     if (opcode == 0x00E0)
                     {
                         // 00E0 - CLS: Limpa o ecrã
-                        Console.WriteLine("Instrução: CLS");
+                        //Console.WriteLine("Instrução: CLS");
                         display.Clear();
                     }
                     else if (opcode == 0x00EE)
                     {
                         // 00EE - RET: Retorna de sub-rotina
-                        Console.WriteLine("Instrução: RET");
+                        //Console.WriteLine("Instrução: RET");
                         PC = stack.Pop();
                     }
                     break;
