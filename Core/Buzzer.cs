@@ -1,6 +1,6 @@
 ﻿using SFML.Audio;
 
-namespace Chipoito
+namespace Chipoito.Core
 {
     public class Buzzer
     {

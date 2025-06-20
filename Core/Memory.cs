@@ -1,4 +1,4 @@
-﻿namespace Chipoito
+﻿namespace Chipoito.Core
 {
     public class Memory
     {

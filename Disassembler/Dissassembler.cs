@@ -7,7 +7,7 @@ using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chipoito
+namespace Chipoito.Disassembler
 {
     internal class Dissassembler
     {
@@ -27,7 +27,7 @@ namespace Chipoito
             string output = "";
             while (i + 1 < rom.Length) // garante que temos 2 bytes disponíveis
             {
-                ushort opcode = (ushort)((rom[i] << 8) | rom[i + 1]);
+                ushort opcode = (ushort)(rom[i] << 8 | rom[i + 1]);
                 string instruction = DecodeOpcode(opcode);
                 Console.WriteLine($"{pc:X4}: {opcode:X4}    {instruction}");
                 output += instruction + "\n";

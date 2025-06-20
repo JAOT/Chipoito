@@ -1,9 +1,8 @@
-﻿
-using SFML.Window;
+﻿using SFML.Window;
 using System.Collections.Generic;
 using static SFML.Window.Keyboard;
 
-namespace Chipoito
+namespace Chipoito.Core
 {
     public class Chip8Keyboard
     {
@@ -55,6 +54,11 @@ namespace Chipoito
 
         public bool IsKeyPressed(byte key)
         {
+            if (key >= keys.Length)
+            {
+                Console.WriteLine($"⚠️ Tecla inválida: {key}");
+                return false;
+            }
             Console.WriteLine($"Verificar tecla {key:X}: {keys[key]}");
             return keys[key];
         }
@@ -68,7 +72,7 @@ namespace Chipoito
                     if (keys[i])
                         return i;
                 }
-                System.Threading.Thread.Sleep(1);
+                Thread.Sleep(1);
             }
         }
 

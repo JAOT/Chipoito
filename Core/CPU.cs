@@ -1,8 +1,7 @@
-﻿
-using SFML.Window;
+﻿using SFML.Window;
 using static SFML.Window.Keyboard;
 
-namespace Chipoito
+namespace Chipoito.Core
 {
     public class CPU
     {
@@ -25,15 +24,15 @@ namespace Chipoito
         {
             this.memory = memory;
             PC = 0x200; // Início do programa
-            this.stack = new Stack<ushort>();
+            stack = new Stack<ushort>();
 
             this.memory = memory;
-            this.stack = new Stack<ushort>();
-            this.V = new byte[16];
-            this.PC = 0x200; // Início do programa
-            this.I = 0;
-            this.delayTimer = 0;
-            this.soundTimer = 0;
+            stack = new Stack<ushort>();
+            V = new byte[16];
+            PC = 0x200; // Início do programa
+            I = 0;
+            delayTimer = 0;
+            soundTimer = 0;
         }
 
         public void SetBuzzer(Buzzer buzzer)
@@ -64,7 +63,7 @@ namespace Chipoito
             }
 
             //obter opcode
-            ushort opcode = (ushort)((memory[PC] << 8) | memory[PC + 1]);
+            ushort opcode = (ushort)(memory[PC] << 8 | memory[PC + 1]);
 
             //Console.WriteLine($"[CICLO] PC={PC:X4} | Opcode={opcode:X4}");
 
@@ -93,7 +92,7 @@ namespace Chipoito
             byte n = (byte)(opcode & 0x000F);
             byte x = (byte)((opcode & 0x0F00) >> 8);
             byte y = (byte)((opcode & 0x00F0) >> 4);
-            Console.WriteLine("Valor de x :"+ x);
+
             var o = (byte)(opcode & 0xF000);
 
             switch (opcode & 0xF000)
@@ -247,7 +246,7 @@ namespace Chipoito
 
                             for (int col = 0; col < 8; col++)
                             {
-                                byte spritePixel = (byte)((spriteByte >> (7 - col)) & 0x1);
+                                byte spritePixel = (byte)(spriteByte >> 7 - col & 0x1);
                                 if (spritePixel == 1)
                                 {
                                     if (display.TogglePixel(xPos + col, yPos + row))
@@ -299,7 +298,7 @@ namespace Chipoito
                             break;
                         case 0x33:
                             memory[I] = (byte)(V[x] / 100);
-                            memory[I + 1] = (byte)((V[x] / 10) % 10);
+                            memory[I + 1] = (byte)(V[x] / 10 % 10);
                             memory[I + 2] = (byte)(V[x] % 10);
                             break;
                         case 0x55:

@@ -1,9 +1,8 @@
-﻿
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 
-namespace Chipoito
+namespace Chipoito.Core
 {
     public class Display
     {
@@ -20,7 +19,7 @@ namespace Chipoito
         {
             screen = new bool[Width, Height];
 
-            window = new RenderWindow(new VideoMode((uint)(Width * Scale), (uint)(Height * Scale)), "Chipoito");
+            window = new RenderWindow(new VideoMode(Width * Scale, Height * Scale), "Chipoito");
             window.Closed += (_, __) => window.Close();
 
         }
